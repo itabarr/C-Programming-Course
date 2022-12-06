@@ -232,6 +232,9 @@ void str_to_int_arr(char arr[], int int_arr[]) {
             int_arr[k] = j;
             break;
         }
+        else if(arr[i] == '"'){
+            
+        }
         else if (arr[i] == ',') {
             j = sign * j;
             int_arr[k] = j;
