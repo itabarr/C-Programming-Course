@@ -71,7 +71,7 @@ void print_quadratic(double a, double b, double c)
             }
 
             else if (b == -1){
-                printf("-x^2");
+                printf("-x");
             }
 
         }
@@ -103,23 +103,21 @@ void print_quadratic(double a, double b, double c)
     }
 
     // Print const part
-    if (c !=0){
-        if (c < 0){
-            printf("%gx", b);
+    if (c!=0){
+        if (c>0){
+            if (a!=0 || b!=0){
+                printf("+%g" , c);
+            }
+            else{
+                printf("%g" , c);
+            }
         }
         else{
-
-            if (a == 0 && b==0){
-                printf("%g", c);
-            }
-
-            else{
-                printf("+%g", c);
-            }
-            
+            printf("%g" , c);
         }
-
     }
+
+    
 
     // Print zero part
     if (a==0 && b==0 && c==0){
