@@ -3,7 +3,7 @@
 #include <stdio.h>
 
 
-// CHECKED WITH VISUAL STUDIO 2019 AND ALL EXAMPLES IN EX4 PDF
+// TESTED WITH VISUAL STUDIO 2019 AND ALL EXAMPLES IN EX4 PDF
 
 void print_quadratic(double a, double b, double c);
 

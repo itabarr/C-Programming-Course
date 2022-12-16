@@ -3,6 +3,15 @@
 #include <stdio.h>
 #include <stdbool.h>
 
+// TESTED WITH VISUAL STUDIO 2019 AND ALL EXAMPLES IN EX4 PDF
+
+// Comments:
+// 1. It seems like they have a mistake with example 2, because the solution is not true
+// 2. They have a problem with structure declaration, it is not how it should be done , added correction
+// 3. To determine if a triange is right i used pythagorean theorem, but because we are using floats the equations should have a threshold.
+// need to ask them what is the correct threshold (and if this is ok..) 
+
+// Fix struct declaration
 typedef struct point Point;
 typedef struct triangle Triangle;
 
