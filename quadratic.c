@@ -2,6 +2,9 @@
 #include <math.h>
 #include <stdio.h>
 
+
+// CHECKED WITH VISUAL STUDIO 2019 AND ALL EXAMPLES IN EX4 PDF
+
 void print_quadratic(double a, double b, double c);
 
 int find_roots(double a, double b, double c, double* p1, double* p2);
