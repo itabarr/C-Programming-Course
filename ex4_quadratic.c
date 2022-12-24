@@ -2,9 +2,6 @@
 #include <math.h>
 #include <stdio.h>
 
-
-// TESTED WITH VISUAL STUDIO 2019 AND ALL EXAMPLES IN EX4 PDF
-
 void print_quadratic(double a, double b, double c);
 
 int find_roots(double a, double b, double c, double* p1, double* p2);
@@ -42,9 +39,8 @@ int main()
 }
 
 void print_quadratic(double a, double b, double c)
-{   
-    // Print section piece by piece with decisions on how to print.
-    // Don't print if coef = 0, special cases for coef = 1,-1, special cases if the coef is "opener" 
+{
+        // Don't print if coef = 0, special cases for coef = 1,-1, special cases if the coef is "opener" 
     
     // Print x^2 part
     if (a !=0){
@@ -125,12 +121,11 @@ void print_quadratic(double a, double b, double c)
     }
 
 
-
 }
 
 int find_roots(double a, double b, double c, double* p1, double* p2)
 {
-    if (a == 0) {
+        if (a == 0) {
         // The equation is not a quadratic equation, but a linear equation
         if (b == 0) {
             // The equation is not a linear equation, but a constant
@@ -173,4 +168,3 @@ int find_roots(double a, double b, double c, double* p1, double* p2)
         }
     }
 }
-
