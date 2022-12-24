@@ -3,31 +3,17 @@
 #include <stdio.h>
 #include <stdbool.h>
 
-// TESTED WITH VISUAL STUDIO 2019 AND ALL EXAMPLES IN EX4 PDF
-
-// Comments:
-// 1. It seems like they have a mistake with example 2, because the solution is not true
-// 2. They have a problem with structure declaration, it is not how it should be done , added correction
-// 3. To determine if a triange is right i used pythagorean theorem, but because we are using floats the equations should have a threshold.
-// need to ask them what is the correct threshold (and if this is ok..) 
-
-// Fix struct declaration
-typedef struct point Point;
-typedef struct triangle Triangle;
-
-struct point {
+typedef struct point {
     double x, y;
-};
+} Point;
 
-struct triangle {
+typedef struct triangle {
     Point p, q, r;
-};
+} Triangle;
 
 void print_point(Point p);
 
 double distance(Point p, Point q);
-
-void side_lengths(Triangle const* t, double* a, double* b, double* c);
 
 void print_triangle(Triangle const* t);
 
@@ -37,19 +23,24 @@ double area(Triangle const* t);
 
 bool is_right(Triangle const* t);
 
+// Define more helper function than given
+void side_lengths(Triangle const* t, double* a, double* b, double* c);
+
 double double_abs(double a);
 
 int main()
 {
     Point p = { .x = 0, .y = 0 };
     Point q = { .x = 0, .y = 13 };
-    Point r = { .x = 12, .y = 0 };
+    Point r = { .x = 13, .y = 0 };
 
     Triangle t = {
         .p = p,
         .r = r,
         .q = q
-    }; // t.q is the origin
+    }; 
+    
+
     double per = perimeter(&t);
     double ar = area(&t);
     printf("The perimeter of a ");
@@ -83,6 +74,23 @@ double distance(Point p, Point q)
     return sqrt(dx * dx + dy * dy);
 }
 
+void print_triangle(Triangle const* t)
+{
+    double p_x = round((*t).p.x * 10000.0) / 10000.0 ; 
+    double p_y = round((*t).p.y * 10000.0) / 10000.0 ;
+    double q_x = round((*t).q.x * 10000.0) / 10000.0 ;
+    double q_y = round((*t).q.y * 10000.0) / 10000.0 ;
+    double r_x = round((*t).r.x * 10000.0) / 10000.0 ;
+    double r_y = round((*t).r.y * 10000.0) / 10000.0 ;
+
+    printf("triangle with corners "); 
+    printf("(%g,%g)", p_x, p_y);
+    printf(", ");
+    printf("(%g,%g)", q_x, q_y);
+    printf(" and ");
+    printf("(%g,%g)", r_x, r_y);
+}
+
 void side_lengths(Triangle const* t, double* a, double* b, double* c)
 {
     //double d = distance((*t).p, (*t).q);
@@ -92,46 +100,39 @@ void side_lengths(Triangle const* t, double* a, double* b, double* c)
     
 }
 
-void print_triangle(Triangle const* t)
-{
-
-    printf("triangle with corners ");
-    printf("(%g,%g)", (*t).p.x, (*t).p.y);
-    printf(", ");
-    printf("(%g,%g)", (*t).q.x, (*t).q.y);
-    printf(" and ");
-    printf("(%g,%g)", (*t).r.x, (*t).r.y);
-}
-
 double perimeter(Triangle const* t)
 {
     double a, b,c;
     side_lengths(t,&a,&b,&c);
 
     double per = a + b +c;
+    per = round(per * 10000.0) / 10000.0 ; // round to 4 digits
     return per;
+    
 }
 
 double area(Triangle const* t)
-{   
-    
+{
     double a, b,c, s, area;
     side_lengths(t,&a,&b,&c);
     
     // Calculate are with Heron's formula
     s = (a + b + c) / 2;
     area = sqrt(s*(s-a)*(s-b)*(s-c));
+    area = round(area * 10000.0) / 10000.0 ; 
 
     return area;
 }
 
 bool is_right(Triangle const* t)
 {
-    double a, b,c, s, area;
-    side_lengths(t,&a,&b,&c);
-
+    
+    double a_sqr = ((*t).p.x - (*t).q.x) * ((*t).p.x - (*t).q.x) + ((*t).p.y - (*t).q.y) * ((*t).p.y - (*t).q.y);
+    double b_sqr = ((*t).q.x - (*t).r.x) * ((*t).q.x - (*t).r.x) + ((*t).q.y - (*t).r.y) * ((*t).q.y - (*t).r.y);
+    double c_sqr = ((*t).r.x - (*t).p.x) * ((*t).r.x - (*t).p.x) + ((*t).r.y - (*t).p.y) * ((*t).r.y - (*t).p.y);
+    
     // Determine if right using  pythagorean theorem:
-    if (abs(a*a - (b*b + c*c))<0.000001 || abs(b*b -(a*a + c*c))<0.000001 || abs(c*c - (b*b + a*a)) < 0.000001){
+    if (a_sqr  == b_sqr + c_sqr || b_sqr == a_sqr + c_sqr || c_sqr == b_sqr + a_sqr ){
         return 1;
     }
 
