@@ -139,6 +139,9 @@ int minPowerOf2(int num)
 
 int isPalindrome(int num)
 {   
+	if (num == 1) {
+		return 1;
+	}
     int org_num = num;
     int pow = _minPowerOf2(num);
     int rev = 0;
@@ -151,6 +154,8 @@ int isPalindrome(int num)
     if (org_num == rev){
         return 1;
     }
+
+	
     return 0;
 }
 
@@ -234,7 +239,7 @@ int _minPowerOf2(int num)
 
 int main()
 {   
-    
+	
     char bin_str[MAX_SIZE_INPUT];
     int num1, num2;
     int q_num;
